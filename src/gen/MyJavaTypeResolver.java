@@ -26,6 +26,8 @@ public class MyJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 		// mysql tinyint对应java.lang.Integer
 		case Types.TINYINT:
 			return new FullyQualifiedJavaType("java.lang.Integer");
+		case Types.DECIMAL:
+			return new FullyQualifiedJavaType("java.math.BigDecimal"); 
 		default:
 			return jdbcTypeInformation.getFullyQualifiedJavaType();
 		}
