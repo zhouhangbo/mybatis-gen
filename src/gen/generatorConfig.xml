@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
 <!--     数据库驱动包位置   -->
-    <context id="DB2Tables" targetRuntime="MyBatis3">  
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">  
     
 <!--     	自定义 -->
     	<property name="javaFormatter" value="gen.MyJavaFormatter"/> 
@@ -10,7 +10,7 @@
             <property name="suppressAllComments" value="true" />  
         </commentGenerator>  
 <!--         数据库链接URL、用户名、密码   -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/dev?characterEncoding=utf8" userId="root" password="123456">   
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/dev?characterEncoding=utf8" userId="root" password="123456">   
         </jdbcConnection>  
         <javaTypeResolver type="gen.MyJavaTypeResolver">  
             <property name="forceBigDecimals" value="false" />  
@@ -29,21 +29,28 @@
 <!--             <property name="enableSubPackages" value="true" />   -->
         </javaClientGenerator>  
 <!--         要生成那些表(更改tableName和domainObjectName就可以)   -->
-        <table tableName="APRI_USER_BASE" domainObjectName="UserBaseDo" alias="userBase"  schema="ub" /> 
-        <table tableName="APRI_USER_BUSINESS" domainObjectName="UserBusinessDo" alias="userBusiness"  schema="ubs" /> 
-        <table tableName="APRI_USER_BANKCARD" domainObjectName="UserBankDo" alias="userBank"  schema="ubk" /> 
-        <table tableName="APRI_USER_CREDIT" domainObjectName="UserCreditDo" alias="userCredit"  schema="uct" />
-        <table tableName="APRI_USER_ACCOUNT" domainObjectName="UserAccountDo" alias="userAccount"  schema="ua" /> 
-        <table tableName="APRI_USER_AUDIT" domainObjectName="UserAuditDo" alias="userAccountApri"  schema="uat" /> 
-        <table tableName="APRI_MAIN_PRODUCT" domainObjectName="ProductDo" alias="product"  schema="mpt" /> 
-        <table tableName="APRI_MAIN_BORROW" domainObjectName="BorrowDo" alias="borrow"  schema="mb" /> 
-        <table tableName="APRI_MAIN_LIMIT" domainObjectName="LimitDo" alias="limit"  schema="ml" />
-        <table tableName="APRI_MAIN_PLAN" domainObjectName="PlanDo" alias="plan"  schema="mp" />
-        <table tableName="APRI_SYS_BUSSLOG" domainObjectName="SysBussLogDo" alias="sysBussLog"  schema="sbl" />
-        <table tableName="APRI_SYS_MSG" domainObjectName="SysMsgDo" alias="sysMsg"  schema="sm" />
-        <table tableName="APRI_SYS_FEEDBACK" domainObjectName="SysFeedbackDo" alias="sysFeedback" schema="sf" />
-        <table tableName="APRI_SYS_ARTICLE" domainObjectName="SysArticleDo" alias="sysArticle"  schema="sa" />
-        <table tableName="APRI_APP_IMG" domainObjectName="AppImgDo" alias="appImg"  schema="ai" />
-        <table tableName="APRI_APP_VERSION" domainObjectName="AppVersionDo" alias="appVersion"  schema="av" />
+<!--         <table tableName="APRI_USER_BASE" domainObjectName="UserBaseDo" alias="userBase"  schema="ub" />  -->
+<!--         <table tableName="APRI_USER_BUSINESS" domainObjectName="UserBusinessDo" alias="userBusiness"  schema="ubs" />  -->
+<!--         <table tableName="APRI_USER_BANKCARD" domainObjectName="UserBankDo" alias="userBank"  schema="ubk" />  -->
+<!--         <table tableName="APRI_USER_CREDIT" domainObjectName="UserCreditDo" alias="userCredit"  schema="uct" /> -->
+<!--         <table tableName="APRI_USER_ACCOUNT" domainObjectName="UserAccountDo" alias="userAccount"  schema="ua" />  -->
+<!--         <table tableName="APRI_USER_AUDIT" domainObjectName="UserAuditDo" alias="userAccountApri"  schema="uat" />  -->
+<!--         <table tableName="APRI_MAIN_PRODUCT" domainObjectName="ProductDo" alias="product"  schema="mpt" />  -->
+<!--         <table tableName="APRI_MAIN_BORROW" domainObjectName="BorrowDo" alias="borrow"  schema="mb" />  -->
+<!--         <table tableName="APRI_MAIN_LIMIT" domainObjectName="LimitDo" alias="limit"  schema="ml" /> -->
+<!--         <table tableName="APRI_MAIN_PLAN" domainObjectName="PlanDo" alias="plan"  schema="mp" /> -->
+<!--         <table tableName="APRI_SYS_BUSSLOG" domainObjectName="SysBussLogDo" alias="sysBussLog"  schema="sbl" /> -->
+<!--         <table tableName="APRI_SYS_MSG" domainObjectName="SysMsgDo" alias="sysMsg"  schema="sm" /> -->
+<!--         <table tableName="APRI_SYS_FEEDBACK" domainObjectName="SysFeedbackDo" alias="sysFeedback" schema="sf" /> -->
+<!--         <table tableName="APRI_SYS_ARTICLE" domainObjectName="SysArticleDo" alias="sysArticle"  schema="sa" /> -->
+<!--         <table tableName="APRI_APP_IMG" domainObjectName="AppImgDo" alias="appImg"  schema="ai" /> -->
+<!--         <table tableName="APRI_APP_VERSION" domainObjectName="AppVersionDo" alias="appVersion"  schema="av" /> -->
+<!--         <table tableName="APRI_MAIN_ORDERNO" domainObjectName="OrderNoDo"> -->
+<!--         	<generatedKey column="id" sqlStatement="Mysql" identity="true"/> -->
+<!--         </table> -->
+<!--         通配符%来匹配所有表 -->
+         <table tableName="%" >
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
     </context>  
 </generatorConfiguration>  

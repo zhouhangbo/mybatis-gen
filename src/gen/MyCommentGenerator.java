@@ -17,6 +17,15 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
 			//修复多行注释BUG
 			field.addJavaDocLine("//" + introspectedColumn.getRemarks().replaceAll("\\n", "\n//")); 
 		}
+		if (introspectedColumn.isIdentity()) {
+            if (introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement().equals("JDBC")) {
+                field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
+            } else {
+                field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
+            }
+        } else if (introspectedColumn.isSequenceColumn()) {
+            field.addAnnotation("@SequenceGenerator(name=\"\",sequenceName=\"" + introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement() + "\")");
+        }
 	} 
 	
 }

@@ -10,12 +10,12 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
-public class Gen {
+public class GenMapper {
 
 	public static void main(String[] args) throws Exception {
 		List<String> warnings = new ArrayList<String>();  
 		boolean overwrite = true;  
-		File configFile = new File("src\\gen\\generatorConfig.xml");  
+		File configFile = new File("src\\gen\\mapperGeneratorConfig.xml");  
 		ConfigurationParser cp = new ConfigurationParser(warnings);  
 		Configuration config = cp.parseConfiguration(configFile);  
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);  
