@@ -84,6 +84,10 @@ public class MyJavaFormatter implements JavaFormatter {
     			top.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.type.Alias"));
     		}
 
+    		//添加导入包
+    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GeneratedValue"));
+    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GenerationType"));
+    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
 		}
     }
     

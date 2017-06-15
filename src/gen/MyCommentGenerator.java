@@ -15,8 +15,9 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
 		// 添加字段注释 
 		if (!StringUtils.isNullOrEmpty(introspectedColumn.getRemarks())){
 			//修复多行注释BUG
-			field.addJavaDocLine("//" + introspectedColumn.getRemarks().replaceAll("\\n", "\n//")); 
+			field.addJavaDocLine("/**" + introspectedColumn.getRemarks().replaceAll("\\n\\s+", "\n     * ") + "*/"); 
 		}
+		//BUG 无法获取主键自增属性
 		if (introspectedColumn.isIdentity()) {
             if (introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement().equals("JDBC")) {
                 field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
@@ -25,6 +26,10 @@ public class MyCommentGenerator extends DefaultCommentGenerator {
             }
         } else if (introspectedColumn.isSequenceColumn()) {
             field.addAnnotation("@SequenceGenerator(name=\"\",sequenceName=\"" + introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement() + "\")");
+        } else if(introspectedTable.getPrimaryKeyColumns().contains(introspectedColumn)){
+        	//默认主键自增
+        	field.addAnnotation("@Id");
+        	field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
         }
 	} 
 	
