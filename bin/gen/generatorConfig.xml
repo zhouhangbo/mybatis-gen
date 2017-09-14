@@ -2,48 +2,73 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
 <!--     数据库驱动包位置   -->
-    <context id="DB2Tables" targetRuntime="MyBatis3">  
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">  
     
 <!--     	自定义 -->
-    	<property name="javaFormatter" value="gen.MyJavaFormatter"/> 
-        <commentGenerator type="gen.MyCommentGenerator">  
-            <property name="suppressAllComments" value="true" />  
-        </commentGenerator>  
+    	<property name="javaFormatter" value="gen.MyJavaFormatter"/>
+        <!--<plugin type="gen.MapperPlugin">-->
+            <!--<property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>-->
+            <!--&lt;!&ndash; caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true &ndash;&gt;-->
+            <!--<property name="caseSensitive" value="true"/>-->
+        <!--</plugin>-->
+        <commentGenerator type="gen.MyCommentGenerator">
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
 <!--         数据库链接URL、用户名、密码   -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/dev?characterEncoding=utf8" userId="root" password="123456">   
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/jiandan?characterEncoding=utf8" userId="root" password="123456">
         </jdbcConnection>  
-        <javaTypeResolver type="gen.MyJavaTypeResolver">  
-            <property name="forceBigDecimals" value="false" />  
-        </javaTypeResolver>  
+        <javaTypeResolver type="gen.MyJavaTypeResolver">
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
 <!--         生成模型的包名和位置   -->
-        <javaModelGenerator targetPackage="cn.jyc.apricots.model" targetProject="src">  
+        <javaModelGenerator targetPackage="com.winning.jiandan.model" targetProject="src">
             <property name="enableSubPackages" value="false" />  
-            <property name="trimStrings" value="false" />  
+            <property name="trimStrings" value="false" />
         </javaModelGenerator>  
 <!--         生成的映射文件包名和位置   -->
-        <sqlMapGenerator targetPackage="cn.jyc.apricots.dao" targetProject="src">  
+        <sqlMapGenerator targetPackage="com.winning.jiandan.mapper.mapper" targetProject="src">
             <property name="enableSubPackages" value="true" />  
         </sqlMapGenerator>  
 <!--         生成DAO的包名和位置   -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.jyc.apricots.dao" targetProject="src">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.winning.jiandan.mapper" targetProject="src">
 <!--             <property name="enableSubPackages" value="true" />   -->
-        </javaClientGenerator>  
+        </javaClientGenerator>
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 <!--         要生成那些表(更改tableName和domainObjectName就可以)   -->
-        <table tableName="APRI_USER_BASE" domainObjectName="UserBaseDo" alias="userBase"  schema="ub" /> 
-        <table tableName="APRI_USER_BUSINESS" domainObjectName="UserBusinessDo" alias="userBusiness"  schema="ubs" /> 
-        <table tableName="APRI_USER_BANKCARD" domainObjectName="UserBankDo" alias="userBank"  schema="ubk" /> 
-        <table tableName="APRI_USER_CREDIT" domainObjectName="UserCreditDo" alias="userCredit"  schema="uct" />
-        <table tableName="APRI_USER_ACCOUNT" domainObjectName="UserAccountDo" alias="userAccount"  schema="ua" /> 
-        <table tableName="APRI_USER_AUDIT" domainObjectName="UserAuditDo" alias="userAccountApri"  schema="uat" /> 
-        <table tableName="APRI_MAIN_PRODUCT" domainObjectName="ProductDo" alias="product"  schema="mpt" /> 
-        <table tableName="APRI_MAIN_BORROW" domainObjectName="BorrowDo" alias="borrow"  schema="mb" /> 
-        <table tableName="APRI_MAIN_LIMIT" domainObjectName="LimitDo" alias="limit"  schema="ml" />
-        <table tableName="APRI_MAIN_PLAN" domainObjectName="PlanDo" alias="plan"  schema="mp" />
-        <table tableName="APRI_SYS_BUSSLOG" domainObjectName="SysBussLogDo" alias="sysBussLog"  schema="sbl" />
-        <table tableName="APRI_SYS_MSG" domainObjectName="SysMsgDo" alias="sysMsg"  schema="sm" />
-        <table tableName="APRI_SYS_FEEDBACK" domainObjectName="SysFeedbackDo" alias="sysFeedback" schema="sf" />
-        <table tableName="APRI_SYS_ARTICLE" domainObjectName="SysArticleDo" alias="sysArticle"  schema="sa" />
-        <table tableName="APRI_APP_IMG" domainObjectName="AppImgDo" alias="appImg"  schema="ai" />
-        <table tableName="APRI_APP_VERSION" domainObjectName="AppVersionDo" alias="appVersion"  schema="av" />
+         <!--<table tableName="user" domainObjectName="UserDo"/>-->
+         <!--<table tableName="club" domainObjectName="ClubDo"/>-->
+         <!--<table tableName="course" domainObjectName="CourseDo"/>-->
+         <!--<table tableName="file" domainObjectName="FileDo"/>-->
+         <!--<table tableName="lesson" domainObjectName="LessonDo"/>-->
+         <!--<table tableName="lesson_members" domainObjectName="LessonMembersDo"/>-->
+         <!--<table tableName="lesson_review" domainObjectName="LessonReviewDo"/>-->
+         <!--<table tableName="sys_config" domainObjectName="SysConfigDo"/>-->
+         <!--<table tableName="user_behaviour" domainObjectName="UserBehaviourDo"/>-->
+         <!--<table tableName="user_bill" domainObjectName="UserBillDo"/>-->
+         <!--<table tableName="user_wechat" domainObjectName="UserWechatDo"/>-->
+<!--         <table tableName="APRI_USER_BUSINESS" domainObjectName="UserBusinessDo" alias="userBusiness"  schema="ubs" />  -->
+<!--         <table tableName="APRI_USER_BANKCARD" domainObjectName="UserBankDo" alias="userBank"  schema="ubk" />  -->
+<!--         <table tableName="APRI_USER_CREDIT" domainObjectName="UserCreditDo" alias="userCredit"  schema="uct" /> -->
+<!--         <table tableName="APRI_USER_ACCOUNT" domainObjectName="UserAccountDo" alias="userAccount"  schema="ua" />  -->
+<!--         <table tableName="APRI_USER_AUDIT" domainObjectName="UserAuditDo" alias="userAccountApri"  schema="uat" />  -->
+<!--         <table tableName="APRI_MAIN_PRODUCT" domainObjectName="ProductDo" alias="product"  schema="mpt" />  -->
+<!--         <table tableName="APRI_MAIN_BORROW" domainObjectName="BorrowDo" alias="borrow"  schema="mb" />  -->
+<!--         <table tableName="APRI_MAIN_LIMIT" domainObjectName="LimitDo" alias="limit"  schema="ml" /> -->
+<!--         <table tableName="APRI_MAIN_PLAN" domainObjectName="PlanDo" alias="plan"  schema="mp" /> -->
+<!--         <table tableName="APRI_SYS_BUSSLOG" domainObjectName="SysBussLogDo" alias="sysBussLog"  schema="sbl" /> -->
+<!--         <table tableName="APRI_SYS_MSG" domainObjectName="SysMsgDo" alias="sysMsg"  schema="sm" /> -->
+<!--         <table tableName="APRI_SYS_FEEDBACK" domainObjectName="SysFeedbackDo" alias="sysFeedback" schema="sf" /> -->
+<!--         <table tableName="APRI_SYS_ARTICLE" domainObjectName="SysArticleDo" alias="sysArticle"  schema="sa" /> -->
+<!--         <table tableName="APRI_APP_IMG" domainObjectName="AppImgDo" alias="appImg"  schema="ai" /> -->
+<!--         <table tableName="APRI_APP_VERSION" domainObjectName="AppVersionDo" alias="appVersion"  schema="av" /> -->
+<!--         <table tableName="APRI_MAIN_ORDERNO" domainObjectName="OrderNoDo"> -->
+<!--         	<generatedKey column="id" sqlStatement="Mysql" identity="true"/> -->
+<!--         </table> -->
+<!--         通配符%来匹配所有表 -->
+         <!--<table tableName="%" >-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+    <!--</table>-->
     </context>  
 </generatorConfiguration>  

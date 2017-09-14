@@ -1,17 +1,10 @@
 package gen;
 
-import java.util.List;
-
 import org.mybatis.generator.api.JavaFormatter;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.config.Context;
-import org.mybatis.generator.config.TableConfiguration;
 
-import com.mysql.jdbc.StringUtils;
+import java.util.List;
 /**
  * 功能（API）表对应的实体
  *
@@ -29,7 +22,7 @@ public class MyJavaFormatter implements JavaFormatter {
     		//同理对方法或属性添加注解
 //    		methods.get(0).addAnnotation("");
 //    		fields.get(0).addAnnotation("");
-    		
+
     		//添加类注解
     		genTopClassAnnotation(top);
     		
@@ -52,43 +45,52 @@ public class MyJavaFormatter implements JavaFormatter {
     }
     
     private void genTopClassAnnotation(TopLevelClass top){
-    	for (TableConfiguration config : context.getTableConfigurations()) {
-			if(!top.getType().getShortName().equals(config.getDomainObjectName())){
-				continue;
-			}
-    		String alias = config.getAlias();
-    		String schema = config.getSchema();
-    		String tableName = config.getTableName();
-    		StringBuilder sb = new StringBuilder("@Table(");
-    		boolean hasTable = false;
-    		if(!StringUtils.isNullOrEmpty(schema)){
-    			sb.append("schema=\"" + schema + "\"");
-    			hasTable = true;
-    		}
-    		if(!StringUtils.isNullOrEmpty(tableName)){
-    			if(hasTable){
-    				sb.append(", ");
-    			}else{
-    				hasTable = true;
-    			}
-    			sb.append("name=\"" + tableName.toLowerCase() + "\"");
-    		}
-    		
-    		if(hasTable){
-    			sb.append(")");
-    			top.addAnnotation(sb.toString());
-    			top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));
-    		}
-    		if(!StringUtils.isNullOrEmpty(alias)){
-    			top.addAnnotation("@Alias(\"" + alias + "\")");
-    			top.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.type.Alias"));
-    		}
-
-    		//添加导入包
-    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GeneratedValue"));
-    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GenerationType"));
-    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
-		}
+		StringBuilder sb = new StringBuilder("@Table(");
+		sb.append("name = \"" + top.getType().getShortName() + "\"");
+		sb.append(")");
+		top.addAnnotation(sb.toString());
+		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));
+		//添加导入包
+		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GeneratedValue"));
+		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GenerationType"));
+		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
+//    	for (TableConfiguration config : context.getTableConfigurations()) {
+//			if(!top.getType().getShortName().equals(config.getDomainObjectName())){top.getType().getShortName()
+//				continue;
+//			}
+//    		String alias = config.getAlias();
+//    		String schema = config.getSchema();
+//    		String tableName = config.getTableName();
+//    		StringBuilder sb = new StringBuilder("@Table(");
+//    		boolean hasTable = false;
+//    		if(!StringUtils.isNullOrEmpty(schema)){
+//    			sb.append("schema=\"" + schema + "\"");
+//    			hasTable = true;
+//    		}
+//    		if(!StringUtils.isNullOrEmpty(tableName)){
+//    			if(hasTable){
+//    				sb.append(", ");
+//    			}else{
+//    				hasTable = true;
+//    			}
+//    			sb.append("name=\"" + tableName.toLowerCase() + "\"");
+//    		}
+//
+//    		if(hasTable){
+//    			sb.append(")");
+//    			top.addAnnotation(sb.toString());
+//    			top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));
+//    		}
+//    		if(!StringUtils.isNullOrEmpty(alias)){
+//    			top.addAnnotation("@Alias(\"" + alias + "\")");
+//    			top.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.type.Alias"));
+//    		}
+//
+//    		//添加导入包
+//    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GeneratedValue"));
+//    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.GenerationType"));
+//    		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
+//		}
     }
     
     private void genTopClassSerializable(TopLevelClass top){

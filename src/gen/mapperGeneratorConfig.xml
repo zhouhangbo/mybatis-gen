@@ -13,16 +13,16 @@
     </plugin>
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                    connectionURL="jdbc:mysql://localhost:3306/dev"
+                    connectionURL="jdbc:mysql://localhost:3306/jiandan"
                     userId="root"
                     password="123456">
     </jdbcConnection>
 
-    <javaModelGenerator targetPackage="cn.jyc.apricots.model1" targetProject="src"/>
+    <javaModelGenerator targetPackage="com.winning.jiandan.model" targetProject="src"/>
 
-    <sqlMapGenerator targetPackage="cn.jyc.apricots.dao1"  targetProject="src"/>
+    <sqlMapGenerator targetPackage="com.winning.jiandan.mapper"  targetProject="src"/>
 
-    <javaClientGenerator targetPackage="cn.jyc.apricots.dao1" targetProject="src" type="XMLMAPPER" />
+    <javaClientGenerator targetPackage="com.winning.jiandan.mapper" targetProject="src" type="XMLMAPPER" />
 
     <table tableName="%" >
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
