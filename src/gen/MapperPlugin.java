@@ -112,8 +112,8 @@ public class MapperPlugin extends PluginAdapter {
             interfaze.addSuperInterface(new FullyQualifiedJavaType(mapper + "<" + entityType.getShortName() + ">"));
         }
 
-        interfaze.addAnnotation("@Mapper");
-        interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper"));
+        interfaze.addAnnotation("@Repository");
+        interfaze.addImportedType(new FullyQualifiedJavaType("org.springframework.stereotype.Repository"));
         interfaze.addImportedType(entityType);
         return true;
     }
