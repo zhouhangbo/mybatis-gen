@@ -46,7 +46,7 @@ public class MyJavaFormatter implements JavaFormatter {
     
     private void genTopClassAnnotation(TopLevelClass top){
 		StringBuilder sb = new StringBuilder("@Table(");
-		sb.append("name = \"" + top.getType().getShortName() + "\"");
+		sb.append("name = \"" + StringUtil.camelToUnderline(top.getType().getShortName()) + "\"");
 		sb.append(")");
 		top.addAnnotation(sb.toString());
 		top.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));

@@ -107,7 +107,7 @@ public class MapperPlugin extends PluginAdapter {
 
         while(var5.hasNext()) {
             String mapper = (String)var5.next();
-            mapper = "com.winning.core.util.MyMapper";
+            mapper = "com.winning.core.component";
             interfaze.addImportedType(new FullyQualifiedJavaType(mapper));
             interfaze.addSuperInterface(new FullyQualifiedJavaType(mapper + "<" + entityType.getShortName() + ">"));
         }

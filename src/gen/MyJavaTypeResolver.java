@@ -1,13 +1,13 @@
 package gen;
 
-import java.sql.Types;
-import java.util.List;
-import java.util.Properties;
-
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
+
+import java.sql.Types;
+import java.util.List;
+import java.util.Properties;
 
 public class MyJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
@@ -25,6 +25,8 @@ public class MyJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 		switch (introspectedColumn.getJdbcType()) {
 		// mysql tinyint对应java.lang.Integer
 		case Types.TINYINT:
+			return new FullyQualifiedJavaType("java.lang.Integer");
+		case Types.SMALLINT:
 			return new FullyQualifiedJavaType("java.lang.Integer");
 		case Types.DECIMAL:
 			return new FullyQualifiedJavaType("java.math.BigDecimal"); 
